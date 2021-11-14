@@ -36,3 +36,50 @@
     transform: rotate(360deg);
   }
 }
+
+form {
+  display: grid;
+  grid-template-areas:
+    'clear negate perc op'
+    'seven eight nine op'
+    'four five six op'
+    'one two three op'
+    'zero zero dec op';
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form > .seven {
+  grid-area: seven;
+}
+form > .eight {
+  grid-area: eight;
+}
+form > .nine {
+  grid-area: nine;
+}
+form > .four {
+  grid-area: four;
+}
+form > .five {
+  grid-area: five;
+}
+form > .six {
+  grid-area: six;
+}
+form > .one {
+  grid-area: one;
+}
+form > .two {
+  grid-area: two;
+}
+form > .three {
+  grid-area: three;
+}
+form > .seven {
+  grid-area: seven;
+}
+form > .zero {
+  grid-area: zero;
+}
