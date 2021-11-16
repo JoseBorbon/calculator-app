@@ -3,6 +3,7 @@ const Operations = ({
   setCurrOp,
   calculate,
   convertDecimal,
+  onEquals,
   setOnEquals,
 }) => {
   const handleOps = (evt) => {
@@ -11,7 +12,12 @@ const Operations = ({
       setCurrOp(evt.target.value);
       return;
     }
-    setOnEquals(false);
+    //if onEquals is currently true, set to false and change operation
+    if (onEquals === true) {
+      setOnEquals(false);
+      setCurrOp(evt.target.value);
+      return;
+    }
     calculate();
     setCurrOp(evt.target.value);
   };
