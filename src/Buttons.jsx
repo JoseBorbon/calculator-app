@@ -165,6 +165,7 @@ const Buttons = ({
         setCurrOp={setCurrOp}
         calculate={calculate}
         convertDecimal={convertDecimal}
+        onEquals={onEquals}
         setOnEquals={setOnEquals}
       />
     </form>
