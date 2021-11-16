@@ -1,17 +1,28 @@
-const Operations = ({ currOp, setCurrOp, calculate, convertToDec }) => {
+const Operations = ({
+  currOp,
+  setCurrOp,
+  calculate,
+  convertDecimal,
+  setOnEquals,
+}) => {
   const handleOps = (evt) => {
     //if Op is not defined
     if (!currOp) {
       setCurrOp(evt.target.value);
       return;
     }
-
-    while (currOp === '.') {
-      convertToDec();
-    }
-
+    setOnEquals(false);
     calculate();
     setCurrOp(evt.target.value);
+  };
+
+  const handleDecimal = () => {
+    convertDecimal();
+  };
+
+  const handleCalc = () => {
+    setOnEquals(true);
+    calculate();
   };
 
   return (
@@ -44,9 +55,14 @@ const Operations = ({ currOp, setCurrOp, calculate, convertToDec }) => {
         className="num"
         type="button"
         value="."
-        onClick={() => handleOps()}
+        onClick={() => handleDecimal()}
       />
-      <input className="two-op" type="submit" value="=" />
+      <input
+        className="two-op"
+        type="submit"
+        value="="
+        onClick={() => handleCalc()}
+      />
     </>
   );
 };
