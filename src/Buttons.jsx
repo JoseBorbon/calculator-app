@@ -15,6 +15,10 @@ const Buttons = ({
   currOp,
   setCurrOp,
   ops,
+  setPrevNumOp,
+  prevNumOp,
+  onEquals,
+  setOnEquals,
 }) => {
   const handleDisplay = (evt) => {
     //if prev is not defined and currentOperation is not defined
@@ -42,18 +46,30 @@ const Buttons = ({
   };
 
   const calculate = () => {
+    if (onEquals) {
+      setPrev(ops[currOp](Number(prev), Number(prevNumOp)));
+      setDisplay(ops[currOp](Number(prev), Number(prevNumOp)));
+      return;
+    }
     setPrev(ops[currOp](Number(prev), Number(curr)));
     setDisplay(ops[currOp](Number(prev), Number(curr)));
     setCurr(null);
+    setPrevNumOp(curr);
   };
 
-  //fix
-  const convertToDec = () => {
-    //if current is not null at the moment
-    if (!curr) {
+  const convertDecimal = () => {
+    //if current is null
+    if (prev === 0) {
+      setDisplay(0 + '.');
+      setPrev(0 + '.');
+    } else if (!curr && prev) {
+      if (String(prev).includes('.')) return;
       setDisplay(prev + '.');
       setPrev(prev + '.');
-    } else {
+    } else if (curr === null) {
+      setDisplay(0 + '.');
+      setCurr(0 + '.');
+    } else if (!String(curr).includes('.')) {
       setDisplay(curr + '.');
       setCurr(curr + '.');
     }
@@ -148,7 +164,8 @@ const Buttons = ({
         currOp={currOp}
         setCurrOp={setCurrOp}
         calculate={calculate}
-        convertDec={convertToDec}
+        convertDecimal={convertDecimal}
+        setOnEquals={setOnEquals}
       />
     </form>
   );
