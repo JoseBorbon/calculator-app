@@ -5,14 +5,13 @@ const Operations = ({
   convertDecimal,
   onEquals,
   setOnEquals,
+  negate,
 }) => {
   const handleOps = (evt) => {
-    //if Op is not defined
     if (!currOp) {
       setCurrOp(evt.target.value);
       return;
     }
-    //if onEquals is currently true, set to false and change operation
     if (onEquals === true) {
       setOnEquals(false);
       setCurrOp(evt.target.value);
@@ -31,8 +30,18 @@ const Operations = ({
     calculate();
   };
 
+  const handleNegate = () => {
+    negate();
+  };
+
   return (
     <>
+      <input
+        className="negate"
+        type="button"
+        value="+/-"
+        onClick={() => handleNegate()}
+      />
       <input
         className="two-op"
         type="button"
