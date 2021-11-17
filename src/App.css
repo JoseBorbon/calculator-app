@@ -1,5 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@600;700&display=swap');
+
 .App {
-  text-align: center;
+  background: linear-gradient(
+      217deg,
+      rgba(202, 0, 0, 0.793),
+      rgba(255, 0, 0, 0) 80.71%
+    ),
+    linear-gradient(
+      127deg,
+      rgba(59, 129, 243, 0.8) 40.71%,
+      rgba(0, 255, 0, 0) 70.71%
+    ),
+    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+
+  height: 100vh;
 }
 
 .App-logo {
@@ -37,6 +51,28 @@
   }
 }
 
+.result {
+  display: flex;
+  justify-content: space-around;
+}
+
+.result > .Calculator-display {
+  color: white;
+  background: linear-gradient(#f36196, #0096ff);
+  width: 475px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 4em;
+  text-align: right;
+  border: 2px solid black;
+}
+
+.Calculator {
+  display: flex;
+  flex-direction: column;
+  font-family: Spartan, sans-serif;
+}
+
 form {
   display: grid;
   grid-template-areas:
@@ -45,9 +81,31 @@ form {
     'four five six op'
     'one two three op'
     'zero zero dec op';
-  width: 50px;
+  width: 100%;
+  max-width: 30em;
+  min-height: 50vh;
   margin-left: auto;
   margin-right: auto;
+}
+
+form > * {
+  background-color: #0096ff;
+  font-family: Spartan, sans-serif;
+  font-size: x-large;
+  font-weight: bold;
+  color: white;
+}
+
+form > .two-op {
+  background-color: #f36196;
+}
+
+form > .negate {
+  grid-area: negate;
+}
+
+form > .percent {
+  grid-area: perc;
 }
 
 form > .seven {
@@ -82,4 +140,13 @@ form > .seven {
 }
 form > .zero {
   grid-area: zero;
+  border-bottom-left-radius: 1em;
+}
+
+form :last-child {
+  border-bottom-right-radius: 1em;
+}
+
+form > *:hover {
+  background-color: red !important;
 }
