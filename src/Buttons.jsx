@@ -1,8 +1,3 @@
-/*
-TRY PREV AND CURRENT NUMBER FOR STATE LIKE IN THE README PROBABLY EASIER THAN USING ARRAY
-*/
-
-//prev is used to keep track of total and for the first number in input
 import Operations from './Operations';
 
 const Buttons = ({
@@ -19,6 +14,8 @@ const Buttons = ({
   prevNumOp,
   onEquals,
   setOnEquals,
+  isPercent,
+  setIsPercent,
 }) => {
   const handleDisplay = (evt) => {
     //if prev is not defined and currentOperation is not defined
@@ -46,6 +43,7 @@ const Buttons = ({
   };
 
   const calculate = () => {
+    if (currOp === null) return;
     if (onEquals) {
       setPrev(ops[currOp](Number(prev), Number(prevNumOp)));
       setDisplay(ops[currOp](Number(prev), Number(prevNumOp)));
@@ -55,6 +53,22 @@ const Buttons = ({
     setDisplay(ops[currOp](Number(prev), Number(curr)));
     setCurr(null);
     setPrevNumOp(curr);
+  };
+
+  const negate = () => {
+    if (!prev) return;
+    if (!curr && prev) {
+      setCurr(String(-display));
+      setDisplay(String(-display));
+      return;
+    }
+    if (curr) {
+      setCurr(String(-curr));
+      setDisplay(String(-display));
+    } else {
+      setPrev(String(-prev));
+      setDisplay(String(-display));
+    }
   };
 
   const convertDecimal = () => {
@@ -91,15 +105,15 @@ const Buttons = ({
           setPrev(null);
           setCurr(null);
           setCurrOp(null);
+          setOnEquals(false);
         }}
       />
       <input
-        className="negate"
+        className="percent"
         type="button"
-        value="+/-"
-        onClick={() => setDisplay(String(-display))}
+        value="%"
+        onClick={() => alert('percent is under construction')}
       />
-      <input type="button" value="%" /> {/* Requires only 1 Value to function*/}
       <input
         className="seven"
         type="button"
@@ -167,6 +181,7 @@ const Buttons = ({
         convertDecimal={convertDecimal}
         onEquals={onEquals}
         setOnEquals={setOnEquals}
+        negate={negate}
       />
     </form>
   );
