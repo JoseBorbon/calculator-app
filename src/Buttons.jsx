@@ -58,7 +58,7 @@ const Buttons = ({
   const negate = () => {
     if (!prev) return;
     if (!curr && prev) {
-      setCurr(String(-display));
+      setPrev(String(-display));
       setDisplay(String(-display));
       return;
     }
@@ -192,7 +192,7 @@ Buttons.defaultProps = {
     '+': (prev, curr) => prev + curr,
     '-': (prev, curr) => prev - curr,
     '/': (prev, curr) => prev / curr,
-    x: (prev, curr) => prev * curr,
+    x: (prev, curr) => Number(prev) * Number(curr),
   },
 };
 
